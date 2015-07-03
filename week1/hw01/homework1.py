@@ -69,4 +69,47 @@ ZeroDivisionError: division by zero
 ###当调用with_if_function()时，在return语句中又调用了if_function()，此时会对c(),t(),f()三个函数求值。
 ###因此在对f()求值时，报错。
 
+#Question 4 The hailstone problem
+length = 0
+def hailstone(n):
+    """Print the hailstone sequence starting at n and return its
+    length.
+
+    >>> a = hailstone(10)
+    10
+    5
+    16
+    8
+    4
+    2
+    1
+    >>> a
+    7
+    """
+    "*** YOUR CODE HERE ***"
+    if n < 0 or n==0:
+        print('n must be a positive number!')
+    length = 1
+    while n != 1:
+        print(n)
+        if n % 2 == 0:
+            n = n // 2
+            length = length + 1
+        elif n % 2 == 1:
+            n = n * 3 + 1
+            length = length + 1
+    print(n)#n is equal to 1, print it
+    return length
+#Extra questions
+#Question 5
+"""Fuck this question!
+Find yourself an m*therf*cker idiot to do this.
+"""
+
+        
+    
+    
+    
+    
+
 
