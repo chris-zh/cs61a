@@ -11,10 +11,12 @@ YOUR EXPLANATION HERE
 """
 
 
-better_is_positive = None  # REPLACE None WITH 1 or 2
+better_is_positive = 2  # REPLACE None WITH 1 or 2
 
 better_is_positive_explanation = """
 YOUR EXPLANATION HERE
+Version 2 is short and easier to read.
+Version 2 predicate only once.
 """
 
 
@@ -50,6 +52,13 @@ def piecewise(f, g, b):
     1
     """
     "*** YOUR CODE HERE ***"
+    def h(x):
+        if x < b:
+            return f
+        else:
+            return g
+    return h
+        
 
 
 def product(n, term):
