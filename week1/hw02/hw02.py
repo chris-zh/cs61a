@@ -54,9 +54,9 @@ def piecewise(f, g, b):
     "*** YOUR CODE HERE ***"
     def h(x):
         if x < b:
-            return f
+            return f(x)
         else:
-            return g
+            return g(x)
     return h
         
 
@@ -77,6 +77,11 @@ def product(n, term):
     14400
     """
     "*** YOUR CODE HERE ***"
+    sum_product = 1
+    for i in range(n):
+        sum_product = sum_product * term(i+1)
+    return sum_product
+
 
 def factorial(n):
     """Return n factorial for n >= 0 by calling product.
@@ -87,6 +92,9 @@ def factorial(n):
     720
     """
     "*** YOUR CODE HERE ***"
+    return product(n, identity)
+
+
 
 
 from operator import add, mul
@@ -106,6 +114,7 @@ def accumulate(combiner, base, n, term):
     72
     """
     "*** YOUR CODE HERE ***"
+
 
 def summation_using_accumulate(n, term):
     """An implementation of summation using accumulate.
