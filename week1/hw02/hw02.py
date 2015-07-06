@@ -99,6 +99,13 @@ def factorial(n):
 
 from operator import add, mul
 
+def summation(term, n):
+    current, total = 1, 0
+    while current <= n:
+        total += term(current)
+        current += 1
+    return total
+
 def accumulate(combiner, base, n, term):
     """Return the result of combining the first n terms in a sequence.
 
@@ -114,6 +121,12 @@ def accumulate(combiner, base, n, term):
     72
     """
     "*** YOUR CODE HERE ***"
+    result = base
+    while n > 0:
+        result = combiner(result,term(n))
+        n -= 1
+    return result
+
 
 
 def summation_using_accumulate(n, term):
@@ -125,6 +138,7 @@ def summation_using_accumulate(n, term):
     45
     """
     "*** YOUR CODE HERE ***"
+    return accumulate(add, 0, n, term)
 
 def product_using_accumulate(n, term):
     """An implementation of product using accumulate.
@@ -135,6 +149,7 @@ def product_using_accumulate(n, term):
     524880
     """
     "*** YOUR CODE HERE ***"
+    return accumulate(mul, 1, n, term)
 
 
 def repeated(f, n):
@@ -151,9 +166,17 @@ def repeated(f, n):
     152587890625
     """
     "*** YOUR CODE HERE ***"
+    baseFun = f
+    while n > 1:
+        baseFun = compose1(f, baseFun)
+        n -= 1
+    return baseFun
+
 
 def compose1(f, g):
     """Return a function h, such that h(x) = f(g(x))."""
+    # print('f-->'+str(f))
+    # print('g-->'+str(g))
     def h(x):
         return f(g(x))
     return h
