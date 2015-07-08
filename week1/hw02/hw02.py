@@ -194,10 +194,12 @@ def successor(n):
 def one(f):
     """Church numeral 1: same as successor(zero)"""
     "*** YOUR CODE HERE ***"
+    return lambda x: f(x)
 
 def two(f):
     """Church numeral 2: same as successor(successor(zero))"""
     "*** YOUR CODE HERE ***"
+    return lambda x: f(f(x))
 
 three = successor(two)
 
@@ -214,6 +216,7 @@ def church_to_int(n):
     3
     """
     "*** YOUR CODE HERE ***"
+
 
 def add_church(m, n):
     """Return the Church numeral for m + n, for Church numerals m and n.
