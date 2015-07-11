@@ -127,8 +127,6 @@ def accumulate(combiner, base, n, term):
         n -= 1
     return result
 
-
-
 def summation_using_accumulate(n, term):
     """An implementation of summation using accumulate.
 
@@ -227,7 +225,7 @@ def add_church(m, n):
     """
     "*** YOUR CODE HERE ***"
     #return church_to_int(m) + church_to_int(n)
-    return lambda f: lambda x: n(f)(m(f)(x))
+    return lambda f: lambda x: m(f)(n(f)(x))
 
 def mul_church(m, n):
     """Return the Church numeral for m * n, for Church numerals m and n.
