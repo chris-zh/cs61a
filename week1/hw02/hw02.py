@@ -239,6 +239,9 @@ def mul_church(m, n):
     12
     """
     "*** YOUR CODE HERE ***"
+    return lambda f: m(n(f))
+
+
 
 
 def pow_church(m, n):
@@ -250,4 +253,5 @@ def pow_church(m, n):
     9
     """
     "*** YOUR CODE HERE ***"
+
 
