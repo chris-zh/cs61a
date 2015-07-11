@@ -253,5 +253,4 @@ def pow_church(m, n):
     9
     """
     "*** YOUR CODE HERE ***"
-
-
+    return lambda f: n(m)(f)
