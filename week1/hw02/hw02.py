@@ -216,6 +216,7 @@ def church_to_int(n):
     3
     """
     "*** YOUR CODE HERE ***"
+    return n(increment)(0)
 
 
 def add_church(m, n):
@@ -225,6 +226,8 @@ def add_church(m, n):
     5
     """
     "*** YOUR CODE HERE ***"
+    #return church_to_int(m) + church_to_int(n)
+    return lambda f: lambda x: n(f)(m(f)(x))
 
 def mul_church(m, n):
     """Return the Church numeral for m * n, for Church numerals m and n.
@@ -236,6 +239,7 @@ def mul_church(m, n):
     12
     """
     "*** YOUR CODE HERE ***"
+
 
 def pow_church(m, n):
     """Return the Church numeral m ** n, for Church numerals m and n.
