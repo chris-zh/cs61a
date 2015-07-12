@@ -1,0 +1,1 @@
+[Hog Project Manual](http://cs61a.org/proj/hog/)
