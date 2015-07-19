@@ -32,30 +32,6 @@ test = {
       """,
       'teardown': '',
       'type': 'doctest'
-    },
-    {
-      'cases': [
-        {
-          'code': r"""
-          >>> hundred_range = range(1, 100)
-          >>> hundred_dice = make_test_dice(*hundred_range)
-          >>> averaged_hundred_dice = make_averaged(hundred_dice, 5*len(hundred_range))
-          >>> correct_average = sum(range(1, 100)) / len(hundred_range)
-          >>> averaged_hundred_dice()
-          50.0
-          >>> averaged_hundred_dice()
-          50.0
-          """,
-          'hidden': False,
-          'locked': False
-        }
-      ],
-      'scored': True,
-      'setup': r"""
-      >>> from hog import *
-      """,
-      'teardown': '',
-      'type': 'doctest'
     }
   ]
 }

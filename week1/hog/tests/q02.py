@@ -1,12 +1,12 @@
 test = {
-  'name': 'Question 1',
-  'points': 2,
+  'name': 'Question 2',
+  'points': 1,
   'suites': [
     {
       'cases': [
         {
           'code': r"""
-          >>> roll_dice(2, make_test_dice(4, 6, 1))
+          >>> take_turn(2, 0, make_test_dice(4, 6, 1))
           70e71b420a966665c548a3bb2cb30d7d
           # locked
           """,
@@ -15,7 +15,7 @@ test = {
         },
         {
           'code': r"""
-          >>> roll_dice(3, make_test_dice(4, 6, 1))
+          >>> take_turn(3, 20, make_test_dice(4, 6, 1))
           43d176e102c8d95338faf8791aa509b3
           # locked
           """,
@@ -24,21 +24,26 @@ test = {
         },
         {
           'code': r"""
-          >>> roll_dice(3, make_test_dice(1, 2, 3))
-          43d176e102c8d95338faf8791aa509b3
-          # locked
-          """,
-          'hidden': False,
-          'locked': True
-        },
-        {
-          'code': r"""
-          >>> counted_dice = make_test_dice(4, 1, 2, 6)
-          >>> roll_dice(3, counted_dice)
-          43d176e102c8d95338faf8791aa509b3
-          # locked
-          >>> roll_dice(1, counted_dice)  # Make sure you call dice exactly num_rolls times!
+          >>> take_turn(0, 35)
           327b19ffebddf93982e1ad2a4a6486f4
+          # locked
+          """,
+          'hidden': False,
+          'locked': True
+        },
+        {
+          'code': r"""
+          >>> take_turn(0, 71)
+          2aef307e1e3d3bb468f74013a49eb977
+          # locked
+          """,
+          'hidden': False,
+          'locked': True
+        },
+        {
+          'code': r"""
+          >>> take_turn(0, 7)
+          2aef307e1e3d3bb468f74013a49eb977
           # locked
           """,
           'hidden': False,
@@ -56,28 +61,24 @@ test = {
       'cases': [
         {
           'code': r"""
-          >>> roll_dice(5, make_test_dice(4, 2, 3, 3, 4, 1))
-          b22930c08461a9e1b8aa4814f9aa996b
-          # locked
+          >>> hog.take_turn(5, 0)
+          -1
           """,
           'hidden': False,
-          'locked': True
-        },
-        {
-          'code': r"""
-          >>> roll_dice(2, make_test_dice(1))
-          43d176e102c8d95338faf8791aa509b3
-          # locked
-          """,
-          'hidden': False,
-          'locked': True
+          'locked': False
         }
       ],
       'scored': True,
       'setup': r"""
-      >>> from hog import *
+      >>> import hog
+      >>> def roll_dice(num_rolls, dice):
+      ...     return -1
+      ...
+      >>> hog.roll_dice, old_roll_dice = roll_dice, hog.roll_dice
       """,
-      'teardown': '',
+      'teardown': r"""
+      >>> hog.roll_dice = old_roll_dice
+      """,
       'type': 'doctest'
     }
   ]

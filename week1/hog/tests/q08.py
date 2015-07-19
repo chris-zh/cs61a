@@ -42,8 +42,8 @@ test = {
         },
         {
           'code': r"""
-          >>> bacon_strategy(20, 18, margin=9, num_rolls=4)
-          962aea5f59fc55bd65ccacf4603c8f22
+          >>> bacon_strategy(20, 20, margin=5, num_rolls=4)
+          edcbd82ba98a8122be244fa325c62071
           # locked
           """,
           'hidden': False,
@@ -51,37 +51,12 @@ test = {
         },
         {
           'code': r"""
-          >>> bacon_strategy(20, 20, margin=5, num_rolls=4)
-          4
+          >>> bacon_strategy(20, 18, margin=9, num_rolls=4)
+          962aea5f59fc55bd65ccacf4603c8f22
+          # locked
           """,
           'hidden': False,
-          'locked': False
-        }
-      ],
-      'scored': True,
-      'setup': r"""
-      >>> from hog import *
-      """,
-      'teardown': '',
-      'type': 'doctest'
-    },
-    {
-      'cases': [
-        {
-          'code': r"""
-          >>> bacon_strategy(20, 4, margin=3, num_rolls=4)
-          0
-          """,
-          'hidden': False,
-          'locked': False
-        },
-        {
-          'code': r"""
-          >>> bacon_strategy(20, 23, margin=5, num_rolls=0)
-          0
-          """,
-          'hidden': False,
-          'locked': False
+          'locked': True
         }
       ],
       'scored': True,
