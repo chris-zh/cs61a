@@ -172,12 +172,12 @@ def make_averaged(fn, num_samples=1000):
     """
 
     "*** YOUR CODE HERE ***"
-	def average(*args):
+	def average(*args):#参数与fn参数一致
 		sum_value = 0
-		for i in range(0, num_samples):
+		for i in range(0, num_samples):#调用fn num_samples次
 			sum_value = sum_value + fn(args)
-		return sum_value / num_samples
-    return average
+		return sum_value / num_samples#返回所有结果的平均数
+    return average#返回一个函数
 
 def max_scoring_num_rolls(dice=six_sided):
     """Return the number of dice (1 to 10) that gives the highest average turn
