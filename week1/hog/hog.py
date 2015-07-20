@@ -189,9 +189,14 @@ def max_scoring_num_rolls(dice=six_sided):
     10
     """
     "*** YOUR CODE HERE ***"
-	#返回dice的数(1 to 10), 调用 roll_dice ，给出平均分数最高的dice的数
-	#make_averaged(dice, 10)
-	#for i in range(0, 10):
+	#返回dice的数量(1 to 10), 调用 roll_dice ，给出平均分数最高的dice的数量
+	max_index, max_sofar = 0, 0
+	for i in range(1, 11):
+		score = make_averaged(roll_dice)(i, dice)
+		if score > max_sofar:
+			max_index = i
+	return i
+	
 
 
 def winner(strategy0, strategy1):
