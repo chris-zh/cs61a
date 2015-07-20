@@ -5,7 +5,7 @@ test = {
     {
       'cases': [
         {
-          'answer': 'a4d959d6146005b45f9590c6bc256e37',
+          'answer': 'While score0 and score1 are both less than goal',
           'choices': [
             'While score0 and score1 are both less than goal',
             'While at least one of score0 or score1 is less than goal',
@@ -13,14 +13,14 @@ test = {
             'While score1 is less than goal'
           ],
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'question': r"""
           The variables score0 and score1 are the scores for both
           players. Under what conditions should the game continue?
           """
         },
         {
-          'answer': '6092933b58b128fe246b574b1aa79389',
+          'answer': 'strategy1(score1, score0)',
           'choices': [
             'strategy1(score1, score0)',
             'strategy1(score0, score1)',
@@ -28,7 +28,7 @@ test = {
             'strategy1(score0)'
           ],
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'question': r"""
           If strategy1 is Player 1's strategy function, score0 is
           Player 0's current score, and score1 is Player 1's current
@@ -37,7 +37,7 @@ test = {
           """
         },
         {
-          'answer': 'e084b0e8a0a510d31d254a4b7ed54f81',
+          'answer': "After the current player takes her turn, and if the sum of the players' scores is prime.",
           'choices': [
             r"""
             After the current player takes her turn, and if either
@@ -57,7 +57,7 @@ test = {
             """
           ],
           'hidden': False,
-          'locked': True,
+          'locked': False,
           'question': 'When does the "Hogtimus prime" rule apply?'
         }
       ],

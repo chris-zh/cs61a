@@ -1,3 +1,4 @@
+#-*- coding:utf-8 –*-
 """The Game of Hog."""
 
 from dice import four_sided, six_sided, make_test_dice
@@ -26,6 +27,7 @@ def roll_dice(num_rolls, dice=six_sided):
         if current_dice == 1:
             pig_out = 1
         sum_point = sum_point + current_dice
+        num_current = num_current + 1
     if pig_out == 1:
         return 1
     return sum_point
@@ -45,8 +47,8 @@ def take_turn(num_rolls, opponent_score, dice=six_sided):
     assert opponent_score < 100, 'The game should be over.'
     "*** YOUR CODE HERE ***"
     if num_rolls == 0:
-        return 1 + max(opponent_score%10,opponent_score/10)
-    return roll_dice(num_rolls)
+        return 1 + max(opponent_score%10,opponent_score//10)
+    return roll_dice(num_rolls, dice)
 
 #the Hog wild rule
 def select_dice(score, opponent_score):
@@ -71,6 +73,7 @@ def is_prime(n):
     while k < n:
         if n % k == 0:
             return False
+        k += 1
     return True
 
 def get_leader(score0, score1):
@@ -111,20 +114,20 @@ def play(strategy0, strategy1, score0=0, score1=0, goal=GOAL_SCORE):
         current_score = 0
         if who == 0:
             current_score = take_turn(strategy0(score0, score1), score1, select_dice(score0, score1))
-            score0 = score0 + current_score
+            score0 += current_score
         else:
-            current_score = take_turn(strategy1(score0, score1), score1, select_dice(score0, score1))
-            score1 = score1 + current_score
+            current_score = take_turn(strategy1(score1, score0), score0, select_dice(score0, score1))
+            score1 += current_score
         #Hogtimus prime role
-        if is_prime(sum(score0, score1)):
+        if is_prime(score0+ score1):
             leader = get_leader(score0, score1)
             if leader == 0:
-                score0 = score0 + current_score
+                score0 += current_score
             elif leader == 1:
-                score1 = score1 + current_score
+                score1 += current_score
         who = other(who)
     #print(score0,score1)
-    return sum(score0, score1), score0 , score1
+    return score0 , score1
 
 
    # return score0, score1  # You may want to change this line.
@@ -172,11 +175,11 @@ def make_averaged(fn, num_samples=1000):
     """
 
     "*** YOUR CODE HERE ***"
-	def average(*args):#参数与fn参数一致
-		sum_value = 0
-		for i in range(0, num_samples):#调用fn num_samples次
-			sum_value = sum_value + fn(args)
-		return sum_value / num_samples#返回所有结果的平均数
+    def average(*args):#参数与fn参数一致�
+        sum_value = 0
+        for i in range(0, num_samples):#调用fn num_samples次�
+            sum_value = sum_value + fn(args)
+        return sum_value / num_samples#返回所有结果的平均数�
     return average#返回一个函数
 
 def max_scoring_num_rolls(dice=six_sided):
@@ -189,14 +192,13 @@ def max_scoring_num_rolls(dice=six_sided):
     10
     """
     "*** YOUR CODE HERE ***"
-	#返回dice的数量(1 to 10), 调用 roll_dice ，给出平均分数最高的dice的数量
-	max_index, max_sofar = 0, 0
-	for i in range(1, 11):
-		score = make_averaged(roll_dice)(i, dice)
-		if score > max_sofar:
-			max_index = i
-	return i
-	
+	#返回dice的数量(1 to 10), 调用 roll_dice ，给出平均分数最高的dice的数量�
+    max_index, max_sofar = 0, 0
+    for i in range(1, 11):
+        score = make_averaged(roll_dice)(i, dice)
+        if score > max_sofar:
+            max_index = i
+    return i
 
 
 def winner(strategy0, strategy1):
