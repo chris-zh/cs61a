@@ -67,7 +67,7 @@ def is_prime(n):
     """
     assert type(n) == int, 'n must be an integer.'
     assert n >= 0, 'n must be non-negative.'
-    k = 1
+    k = 2
     if n == 1:
         return False
     while k < n:
@@ -110,7 +110,7 @@ def play(strategy0, strategy1, score0=0, score1=0, goal=GOAL_SCORE):
     """
     who = 0  # Which player is about to take a turn, 0 (first) or 1 (second)
     "*** YOUR CODE HERE ***"
-    while max(score0, score1) < 100:
+    while max(score0, score1) < goal:
         current_score = 0
         if who == 0:
             current_score = take_turn(strategy0(score0, score1), score1, select_dice(score0, score1))
@@ -118,13 +118,16 @@ def play(strategy0, strategy1, score0=0, score1=0, goal=GOAL_SCORE):
         else:
             current_score = take_turn(strategy1(score1, score0), score0, select_dice(score0, score1))
             score1 += current_score
-        #Hogtimus prime role
+        is_prime_msg = str(is_prime(score0+ score1))
+        #Hogtimus prime rule
         if is_prime(score0+ score1):
             leader = get_leader(score0, score1)
             if leader == 0:
                 score0 += current_score
             elif leader == 1:
                 score1 += current_score
+        #msg = 'currentWho: '+str(who)+' current_score: '+str(current_score)+' score0: '+str(score0)+' score1: '+str(score1)+' is_prime: '+is_prime_msg
+        #print(msg)
         who = other(who)
         #print(score0,score1)
     return score0 , score1
