@@ -126,7 +126,7 @@ def play(strategy0, strategy1, score0=0, score1=0, goal=GOAL_SCORE):
             elif leader == 1:
                 score1 += current_score
         who = other(who)
-    #print(score0,score1)
+        #print(score0,score1)
     return score0 , score1
 
 
