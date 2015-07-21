@@ -9,11 +9,10 @@ test = {
           >>> dice = make_test_dice(3, 1, 5, 6)
           >>> averaged_dice = make_averaged(dice, 1000)
           >>> averaged_dice()  # average of calling dice 1000 times
-          ae54f398e6c98b4c11197ca202bbf4fb
-          # locked
+          3.75
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""

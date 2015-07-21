@@ -178,7 +178,7 @@ def make_averaged(fn, num_samples=1000):
     def average(*args):#参数与fn参数一致�
         sum_value = 0
         for i in range(0, num_samples):#调用fn num_samples次�
-            sum_value = sum_value + fn(args)
+            sum_value = sum_value + fn(*args)
         return sum_value / num_samples#返回所有结果的平均数�
     return average#返回一个函数
 
@@ -192,13 +192,16 @@ def max_scoring_num_rolls(dice=six_sided):
     10
     """
     "*** YOUR CODE HERE ***"
-	#返回dice的数量(1 to 10), 调用 roll_dice ，给出平均分数最高的dice的数量�
+    #返回dice的数量(1 to 10), 调用 roll_dice ，给出平均分数最高的dice的数量�
     max_index, max_sofar = 0, 0
     for i in range(1, 11):
         score = make_averaged(roll_dice)(i, dice)
+        #print(score)
         if score > max_sofar:
+            max_sofar = score
+            #print('i is '+str(i))
             max_index = i
-    return i
+    return max_index
 
 
 def winner(strategy0, strategy1):
