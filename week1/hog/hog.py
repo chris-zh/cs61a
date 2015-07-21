@@ -68,7 +68,7 @@ def is_prime(n):
     assert type(n) == int, 'n must be an integer.'
     assert n >= 0, 'n must be non-negative.'
     k = 2
-    if n == 1:
+    if n == 1 or n == 0:
         return False
     while k < n:
         if n % k == 0:
@@ -223,7 +223,7 @@ def average_win_rate(strategy, baseline=always_roll(5)):
 
 def run_experiments():
     """Run a series of strategy experiments and report results."""
-    if True: # Change to False when done finding max_scoring_num_rolls
+    if False: # Change to False when done finding max_scoring_num_rolls
         six_sided_max = max_scoring_num_rolls(six_sided)
         print('Max scoring num rolls for six-sided dice:', six_sided_max)
         four_sided_max = max_scoring_num_rolls(four_sided)
@@ -235,7 +235,7 @@ def run_experiments():
     if False: # Change to True to test bacon_strategy
         print('bacon_strategy win rate:', average_win_rate(bacon_strategy))
 
-    if False: # Change to True to test prime_strategy
+    if True: # Change to True to test prime_strategy
         print('prime_strategy win rate:', average_win_rate(prime_strategy))
 
     if False: # Change to True to test final_strategy
@@ -248,18 +248,29 @@ def run_experiments():
 def bacon_strategy(score, opponent_score, margin=8, num_rolls=5):
     """This strategy rolls 0 dice if that gives at least MARGIN points,
     and rolls NUM_ROLLS otherwise.
-    """
+    """	
     "*** YOUR CODE HERE ***"
-    return None # Replace this statement
+    if take_turn(0, opponent_score) >= margin:
+        return 0
+    return num_rolls
+    #return None # Replace this statement
 
 def prime_strategy(score, opponent_score, margin=8, num_rolls=5):
     """This strategy rolls 0 dice when it results in a beneficial boost and
     rolls NUM_ROLLS if rolling 0 dice gives the opponent a boost. It also
     rolls 0 dice if that gives at least MARGIN points and rolls NUM_ROLLS
     otherwise.
-    """
+    """        
     "*** YOUR CODE HERE ***"
-    return None # Replace this statement
+    dice_zero_score = take_turn(0, opponent_score)
+    next_score = score + dice_zero_score
+    if is_prime(next_score + opponent_score) and next_score > opponent_score:
+        return 0
+    elif is_prime(next_score + opponent_score) and next_score < opponent_score:
+        return num_rolls
+    else:
+        return bacon_strategy(score, opponent_score, margin, num_rolls)
+    #return None # Replace this statement
 
 
 def final_strategy(score, opponent_score):

@@ -1,1 +1,1 @@
-python ok -q q05 -v
+python ok -q q05 -v > log.txt

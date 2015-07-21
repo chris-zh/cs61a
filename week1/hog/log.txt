@@ -1,0 +1,154 @@
+=====================================================================
+Assignment: Project 1: Hog
+OK, version v1.3.30
+=====================================================================
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Running tests
+
+---------------------------------------------------------------------
+Question 5 > Suite 1 > Case 1
+
+Q: The variables score0 and score1 are the scores for both
+players. Under what conditions should the game continue?
+A: While score0 and score1 are both less than goal
+-- OK! --
+
+---------------------------------------------------------------------
+Question 5 > Suite 1 > Case 2
+
+Q: If strategy1 is Player 1's strategy function, score0 is
+Player 0's current score, and score1 is Player 1's current
+score, then which of the following demonstrates correct
+usage of strategy1?
+A: strategy1(score1, score0)
+-- OK! --
+
+---------------------------------------------------------------------
+Question 5 > Suite 1 > Case 3
+
+Q: When does the "Hogtimus prime" rule apply?
+A: After the current player takes her turn, and if the sum of the players' scores is prime.
+-- OK! --
+
+---------------------------------------------------------------------
+Question 5 > Suite 2 > Case 1
+
+>>> import hog
+>>> hog.four_sided = hog.make_test_dice(1)
+>>> hog.six_sided = hog.make_test_dice(3)
+>>> always = hog.always_roll
+>>> hog.play(always(5), always(5))
+(106, 46)
+-- OK! --
+
+---------------------------------------------------------------------
+Question 5 > Suite 2 > Case 2
+
+>>> import hog
+>>> hog.four_sided = hog.make_test_dice(1)
+>>> hog.six_sided = hog.make_test_dice(3)
+>>> always = hog.always_roll
+>>> hog.play(always(2), always(2))
+(57, 104)
+-- OK! --
+
+---------------------------------------------------------------------
+Question 5 > Suite 2 > Case 3
+
+>>> import hog
+>>> hog.four_sided = hog.make_test_dice(1)
+>>> hog.six_sided = hog.make_test_dice(3)
+>>> always = hog.always_roll
+>>> hog.play(always(2), always(10))
+(7, 126)
+-- OK! --
+
+---------------------------------------------------------------------
+Question 5 > Suite 2 > Case 4
+
+>>> import hog
+>>> hog.four_sided = hog.make_test_dice(1)
+>>> hog.six_sided = hog.make_test_dice(3)
+>>> always = hog.always_roll
+>>> hog.play(always(0), always(0))
+(74, 106)
+-- OK! --
+
+---------------------------------------------------------------------
+Question 5 > Suite 2 > Case 5
+
+>>> import hog
+>>> hog.four_sided = hog.make_test_dice(1)
+>>> hog.six_sided = hog.make_test_dice(3)
+>>> always = hog.always_roll
+>>> hog.play(always(0), always(2))
+(108, 94)
+-- OK! --
+
+---------------------------------------------------------------------
+Question 5 > Suite 2 > Case 6
+
+>>> import hog
+>>> hog.four_sided = hog.make_test_dice(1)
+>>> hog.six_sided = hog.make_test_dice(3)
+>>> always = hog.always_roll
+>>> hog.play(always(0), always(2), goal=10)
+(1, 12)
+-- OK! --
+
+---------------------------------------------------------------------
+Question 5 > Suite 2 > Case 7
+
+>>> import hog
+>>> hog.four_sided = hog.make_test_dice(1)
+>>> hog.six_sided = hog.make_test_dice(3)
+>>> always = hog.always_roll
+>>> hog.four_sided = hog.make_test_dice(1)
+>>> hog.six_sided = hog.make_test_dice(1)
+>>> hog.play(always(1), always(1), goal=2)
+(3, 1)
+-- OK! --
+
+---------------------------------------------------------------------
+Question 5 > Suite 3 > Case 1
+
+>>> import hog
+>>> always = hog.always_roll
+>>> def weird_strat(score, opponent):
+...     return opponent // 10
+>>> def make_secret_strategy(n):
+...     def secret_strategy(score, opp):
+...         return int(score * 7 + opp * 17 + n) % 11
+...     return secret_strategy
+>>> hog.four_sided = hog.make_test_dice(6, 1, 3, 4)
+>>> hog.six_sided = hog.make_test_dice(6, 1, 3, 4, 5, 2)
+>>> hog.play(always(0), weird_strat)
+(101, 54)
+-- OK! --
+
+---------------------------------------------------------------------
+Question 5 > Suite 3 > Case 2
+
+>>> import hog
+>>> always = hog.always_roll
+>>> def weird_strat(score, opponent):
+...     return opponent // 10
+>>> def make_secret_strategy(n):
+...     def secret_strategy(score, opp):
+...         return int(score * 7 + opp * 17 + n) % 11
+...     return secret_strategy
+>>> hog.four_sided = hog.make_test_dice(6, 1, 3, 4)
+>>> hog.six_sided = hog.make_test_dice(6, 1, 3, 4, 5, 2)
+>>> hog.play(weird_strat, weird_strat)
+(108, 38)
+-- OK! --
+
+---------------------------------------------------------------------
+Test summary
+    Passed: 12
+    Failed: 0
+[ooooooooook] 100.0% passed
+Performing authentication
+Please enter your CalNet ID.
+CalNet ID: 
