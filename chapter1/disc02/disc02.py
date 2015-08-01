@@ -55,15 +55,6 @@ def sum_primes_up_to(n):
     return sum(list(filter(is_prime, range(n + 1)[2:])))
 
 
-def test():
-    '''print(is_prime(2))
-    print(is_prime(1))
-    print (is_prime(98))
-    print (is_prime(7))
-    print (is_prime(1937))'''
-    print(sum_primes_up_to(20))
-if __name__=='__main__':
-    test()
 #--------------------------------------------
 ##6
 '''rec(3, 2) 3的2次方'''
@@ -74,15 +65,22 @@ def rec(x, y):
 #--------------------------------------------
 #2.1 Exercises
 ##1
-'''看起来跟SICP第一章换硬币的问题很类似。'''
-'''下面的写法是错的，待解决'''
+'''斐波那契数列'''
+'''问题扩展：SICP第一章换硬币的问题'''
 def count_stair_ways(n):
-    def cc(amount, kinds_of_cons):
-        if amount ==0:
-            return 1
-        elif amount < 0 or kinds_of_cons ==0:
-            return 0
-        else:
-            return cc(amount, kinds_of_cons - 1) + cc(amount - 2, kinds_of_cons)
-    return cc(n, 2)
+    if n == 1:
+        return 1
+    elif n == 2:
+        return 2
+    else:
+        return count_stair_ways(n-1)+count_stair_ways(n-2)
 
+def test():
+    '''print(is_prime(2))
+    print(is_prime(1))
+    print (is_prime(98))
+    print (is_prime(7))
+    print (is_prime(1937))'''
+    print(sum_primes_up_to(20))
+if __name__=='__main__':
+    print(count_stair_ways(3))
