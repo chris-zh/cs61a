@@ -84,3 +84,14 @@ def test():
     print(sum_primes_up_to(20))
 if __name__=='__main__':
     print(count_stair_ways(3))
+###2
+'''帕斯卡三角'''
+def pascal(row, column):
+    if row == 0:
+        return 1
+    elif column ==0 or row == column:
+        return 1
+    else:
+        return pascal(row - 1, column -1) +pascal(row - 1, column)
+###3
+'''类似找零钱的问题'''
