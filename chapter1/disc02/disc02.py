@@ -75,15 +75,6 @@ def count_stair_ways(n):
     else:
         return count_stair_ways(n-1)+count_stair_ways(n-2)
 
-def test():
-    '''print(is_prime(2))
-    print(is_prime(1))
-    print (is_prime(98))
-    print (is_prime(7))
-    print (is_prime(1937))'''
-    print(sum_primes_up_to(20))
-if __name__=='__main__':
-    print(count_stair_ways(3))
 ###2
 '''帕斯卡三角'''
 def pascal(row, column):
@@ -95,3 +86,70 @@ def pascal(row, column):
         return pascal(row - 1, column -1) +pascal(row - 1, column)
 ###3
 '''类似找零钱的问题'''
+def has_sum(sum, n1, n2):
+    def cc(amount, kinds_of_coins):
+        if amount == 0:
+            return 1
+        elif amount < 0 or kinds_of_coins == 0:
+            return 0
+        else:
+            return cc(amount, kinds_of_coins - 1) + cc(amount - first_denomination(kinds_of_coins), kinds_of_coins)
+    def first_denomination(kinds_of_coins):
+        if kinds_of_coins == 1:
+            return n1
+        elif kinds_of_coins == 2:
+            return n2
+    #return cc(sum, 2)
+    if cc(sum, 2) > 0:
+        return True
+    return False
+
+'''下面是找零钱问题
+def count_change(amount):
+    return cc(amount, 2)
+
+def cc(amount, kinds_of_coins):
+    if amount == 0:
+        return 1
+    elif amount < 0 or kinds_of_coins == 0:
+        return 0
+    else:
+        return cc(amount, kinds_of_coins - 1) + cc(amount - first_denomination(kinds_of_coins), kinds_of_coins)
+
+def first_denomination(kinds_of_coins):
+    if kinds_of_coins == 1:
+        return 1
+    elif kinds_of_coins == 2:
+        return 5
+    elif kinds_of_coins ==3:
+        return 10
+    elif kinds_of_coins == 4:
+        return 25
+    elif kinds_of_coins ==5:
+        return 50
+    else:
+        return 0
+'''
+##2.2 Extra Questions
+def sum_range(lower, upper):
+    def predicate(lower, upper):
+        if lower < 50 and upper >= 60:
+            return True
+        elif lower > 50 and lower <= 130 and upper >= 140:
+            return True
+        elif lower > 130 and lower <= 180 and upper >= 200:
+            return True
+        else:
+            return False
+    if lower > 200:
+        return sum_range(lower - 200, upper - 200)
+    else:
+        return predicate(lower, upper)
+
+def test():
+    print(sum_range(45, 60))
+    print(sum_range(40, 55))
+    print (sum_range(170, 201))
+    print(sum_range(249, 260))
+if __name__=='__main__':
+    test()
