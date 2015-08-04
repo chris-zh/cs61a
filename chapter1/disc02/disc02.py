@@ -130,14 +130,15 @@ def first_denomination(kinds_of_coins):
     else:
         return 0
 '''
+
 ##2.2 Extra Questions
 def sum_range(lower, upper):
-    def predicate(lower, upper):
-        if lower < 50 and upper >= 60:
+    def predicate(low, up):
+        if low < 50 and up >= 60:
             return True
-        elif lower > 50 and lower <= 130 and upper >= 140:
+        elif 50 < low <= 130 and up >= 140:
             return True
-        elif lower > 130 and lower <= 180 and upper >= 200:
+        elif 130 < low <= 180 and up >= 200:
             return True
         else:
             return False
