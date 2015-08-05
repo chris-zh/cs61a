@@ -12,7 +12,7 @@ def both_positive(x, y):
     True
     """
     "*** YOUR CODE HERE ***"
-    return x and y > 0
+    return x > 0 and y > 0
 
 ## while Loops ##
 
@@ -29,7 +29,11 @@ def factors(n):
     1
     """
     "*** YOUR CODE HERE ***"
-
+    i = n
+    while i > 0:
+        if n % i == 0:
+            print(i)
+        i -= 1
 # Q10
 def fib(n):
     """Returns the nth Fibonacci number.
@@ -50,4 +54,15 @@ def fib(n):
     8
     """
     "*** YOUR CODE HERE ***"
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    a, b = 0, 1
+    i = 1
+    while i < n:
+        a, b = b, a + b
+        i += 1
+    return b
+
 
