@@ -25,6 +25,7 @@ def gets_discount(x, y):
     False
     """
     "*** YOUR CODE HERE ***"
+    return (x <= 12 and y >=65) or (x >=65 and y <= 12)
 
 # Q12
 def is_factor(x, y):
@@ -40,6 +41,7 @@ def is_factor(x, y):
     False
     """
     "*** YOUR CODE HERE ***"
+    return x != 0 and y % x == 0
 
 
 # Q13
@@ -56,3 +58,9 @@ def falling(n, k):
     4
     """
     "*** YOUR CODE HERE ***"
+    result, i = 1, 0
+    while i < k:
+        result = result * n
+        n -= 1
+        i += 1
+    return result
