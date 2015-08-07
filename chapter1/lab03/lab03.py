@@ -17,6 +17,16 @@ def make_buzzer(n):
     9
     """
     "*** YOUR CODE HERE ***"
+    def buzzer(range):
+        i = 0
+        while i < range:
+            if i % n == 0:
+                print('Buzz!')
+            else:
+                print(i)
+            i += 1
+    return buzzer
+
 
 # Q4
 def f1():
@@ -25,6 +35,7 @@ def f1():
     3
     """
     "*** YOUR CODE HERE ***"
+    return 3
 
 def f2():
     """
@@ -32,6 +43,7 @@ def f2():
     3
     """
     "*** YOUR CODE HERE ***"
+    return lambda: 3
 
 def f3():
     """
@@ -39,6 +51,7 @@ def f3():
     3
     """
     "*** YOUR CODE HERE ***"
+    return lambda x:  x
 
 def f4():
     """
@@ -46,6 +59,7 @@ def f4():
     3
     """
     "*** YOUR CODE HERE ***"
+    return lambda : lambda x: lambda: x
 
 # Q6
 def sum(n):
@@ -58,6 +72,9 @@ def sum(n):
     15
     """
     "*** YOUR CODE HERE ***"
+    if n == 1:
+        return n
+    return n + sum(n - 1)
 
 # Q7
 
@@ -73,7 +90,7 @@ def sum_every_other_number(n):
     if n == 0:
         return 0
     else:
-        return n + sum_every_other_number(n - 2)
+        return n + sum_every_other_number(n - 1)
 
 
 def fibonacci(n):
