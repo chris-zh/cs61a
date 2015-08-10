@@ -1,3 +1,4 @@
+# coding:utf-8
 # Q9
 def cycle(f1, f2, f3):
     """ Returns a function that is itself a higher order function
@@ -25,6 +26,19 @@ def cycle(f1, f2, f3):
     19
     """
     "*** YOUR CODE HERE ***"
+    def g(n):
+        if n % 3 == 0:
+            return f3
+        elif n % 3 == 1:
+            return f1
+        elif n % 3 == 2:
+            return f2
+    def h(n):
+        if n == 0:
+            return lambda x: x
+        else:
+            return lambda x: g(n)(h(n - 1)(x))
+    return h
 
 # Q10
 def lambda_curry2(func):
@@ -37,8 +51,9 @@ def lambda_curry2(func):
     8
     """
     "*** YOUR CODE HERE ***"
-    return ______
-
+    return lambda x: lambda y: func(x, y)
+#Q11
+20
 # Q12
 def paths(m, n):
     """Return the number of paths from one corner of an
@@ -54,6 +69,16 @@ def paths(m, n):
     1
     """
     "*** YOUR CODE HERE ***"
+    #共y = (m - 1) + (n - 1)步。其中x = n - 1步向上。相当于y中取x个球。所以为C(x,y)
+    y, x = (m - 1) + (n - 1), n - 1
+    def count(x, y):
+        if x == 1:
+            return y
+        elif x == y or x == 0 :
+            return 1
+        else:
+            return count(x - 1, y - 1) + count(x, y - 1)
+    return count(x, y)
 
 # Q13
 def gcd(a, b):
@@ -70,3 +95,8 @@ def gcd(a, b):
     40
     """
     "*** YOUR CODE HERE ***"
+    a, b = max(a, b), min(a, b)
+    if a % b == 0:
+        return b
+    else:
+        return gcd(b, a % b)
