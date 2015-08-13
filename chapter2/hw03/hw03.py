@@ -13,6 +13,10 @@ def g(n):
     22
     """
     "*** YOUR CODE HERE ***"
+    if n <= 3:
+        return n
+    else:
+        return g(n - 1) + 2 * g(n - 2) + 3 * g(n - 3)
 
 def g_iter(n):
     """Return the value of G(n), computed iteratively.
@@ -29,6 +33,7 @@ def g_iter(n):
     22
     """
     "*** YOUR CODE HERE ***"
+
 
 
 def has_seven(k):
@@ -48,6 +53,12 @@ def has_seven(k):
     True
     """
     "*** YOUR CODE HERE ***"
+    if k % 10 == 7:
+        return True
+    elif k < 10 and k != 7:
+        return False
+    else:
+        return has_seven(k // 10)
 
 
 def pingpong(n):
@@ -79,6 +90,20 @@ def pingpong(n):
     2
     """
     "*** YOUR CODE HERE ***"
+    def multiple_of_seven(n):
+        if n % 7 == 0:
+            return True
+        else:
+            return False
+    def switch(x):
+        return -x
+    k, result, d = 1, 1, 1
+    while k < n:
+        if multiple_of_seven(k) or has_seven(k):
+            d = switch(d)
+        result += d
+        k += 1
+    return result
 
 
 def count_change(amount):
