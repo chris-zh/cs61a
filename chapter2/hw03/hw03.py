@@ -1,3 +1,4 @@
+# coding:utf-8
 def g(n):
     """Return the value of G(n), computed recursively.
 
@@ -33,7 +34,14 @@ def g_iter(n):
     22
     """
     "*** YOUR CODE HERE ***"
-
+    if n <= 3:
+        return n
+    a, b, c = 1, 2, 3
+    i = 1
+    while i < n:
+        a, b, c = b, c, a * 3 + 2 * b + c
+        i += 1
+    return a
 
 
 def has_seven(k):
@@ -105,6 +113,22 @@ def pingpong(n):
         k += 1
     return result
 
+#递归版本，有错误，待修改
+def pingpong2(n):
+    def multiple_of_seven(n):
+        if n % 7 == 0:
+            return True
+        else:
+            return False
+    def pingpong_rev(n, d):
+        if n == 1:
+            return n
+        else:
+            if multiple_of_seven(n) or has_seven(n):
+                d = 0 - d
+            return pingpong_rev(n - 1,d) + d
+    return pingpong_rev(n,1)
+
 
 def count_change(amount):
     """Return the number of ways to make change for amount.
@@ -119,6 +143,25 @@ def count_change(amount):
     9828
     """
     "*** YOUR CODE HERE ***"
+    #计算允许的最大的硬币种类
+    def count_kinds_of_coins(amount):
+        i = 1
+        while first_denomination(i) < amount:
+            i += 1
+        return i
+    #硬币种类所对应的最大面值
+    def first_denomination(kinds_of_coins):
+        return pow(2, kinds_of_coins - 1)
+    #开始递归
+    def cc(amount,kinds_of_coins):
+        if amount == 0:
+            return 1
+        elif amount < 0 or kinds_of_coins == 0:
+            return 0
+        else:
+            return cc(amount, kinds_of_coins - 1) + cc(amount - first_denomination(kinds_of_coins), kinds_of_coins)
+    return cc(amount, count_kinds_of_coins(amount))
+
 
 
 def towers_of_hanoi(n, start, end):
@@ -144,6 +187,7 @@ def towers_of_hanoi(n, start, end):
     """
     assert 0 < start <= 3 and 0 < end <= 3 and start != end, "Bad start/end"
     "*** YOUR CODE HERE ***"
+    
 
 
 from operator import sub, mul
