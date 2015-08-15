@@ -68,6 +68,9 @@ def has_seven(k):
     else:
         return has_seven(k // 10)
 
+multiple_of_seven = lambda n : n % 7 == 0
+seven = lambda x:  multiple_of_seven(x) or has_seven(x)
+switch = lambda x: - x
 
 def pingpong(n):
     """Return the nth element of the ping-pong sequence.
@@ -98,24 +101,15 @@ def pingpong(n):
     2
     """
     "*** YOUR CODE HERE ***"
-    def multiple_of_seven(n):
-        if n % 7 == 0:
-            return True
-        else:
-            return False
-    def switch(x):
-        return -x
     k, result, d = 1, 1, 1
     while k < n:
-        if multiple_of_seven(k) or has_seven(k):
+        if seven(k):
             d = switch(d)
         result += d
         k += 1
     return result
 #递归版本，有错误，待修改
 def pingpong2(n):
-    multiple_of_seven = lambda n : n % 7 == 0
-    seven = lambda x:  multiple_of_seven(x) or has_seven(x)
     def pingpong_rev(k, j, i):
         print("k: "+str(k)+" j: "+str(j)+" i: "+str(i)+ " dir: "+str(seven(i)))
         if i == k:
