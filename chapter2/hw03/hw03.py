@@ -112,24 +112,21 @@ def pingpong(n):
         result += d
         k += 1
     return result
-
 #递归版本，有错误，待修改
 def pingpong2(n):
-    def multiple_of_seven(n):
-        if n % 7 == 0:
-            return True
+    multiple_of_seven = lambda n : n % 7 == 0
+    seven = lambda x:  multiple_of_seven(x) or has_seven(x)
+    def pingpong_rev(k, j, i):
+        print("k: "+str(k)+" j: "+str(j)+" i: "+str(i)+ " dir: "+str(seven(i)))
+        if i == k:
+            return j
+        if seven(i):
+            print(" sub ")
+            return pingpong_rev(k, j - 1, i + 1)
         else:
-            return False
-    def pingpong_rev(n, d):
-        if n == 1:
-            return n
-        else:
-            if multiple_of_seven(n) or has_seven(n):
-                d = 0 - d
-            return pingpong_rev(n - 1,d) + d
-    return pingpong_rev(n,1)
-
-
+            print(" add ")
+            return pingpong_rev(k, j + 1, i + 1)
+    return pingpong_rev(n,1 , 1)
 def count_change(amount):
     """Return the number of ways to make change for amount.
 
@@ -149,7 +146,7 @@ def count_change(amount):
         while first_denomination(i) < amount:
             i += 1
         return i
-    #硬币种类所对应的最大面值
+    #硬币种类所对应的最大面值�
     def first_denomination(kinds_of_coins):
         return pow(2, kinds_of_coins - 1)
     #开始递归
@@ -187,6 +184,20 @@ def towers_of_hanoi(n, start, end):
     """
     assert 0 < start <= 3 and 0 < end <= 3 and start != end, "Bad start/end"
     "*** YOUR CODE HERE ***"
+    move = lambda n, a, b: print("Move the top disk from rod "+str(a)+" to rod "+str(b))
+    def other():
+        all = [1, 2, 3]
+        for i in all:
+            if i != start and i != end:
+                return i
+    if n == 1:
+        move(n, start, end)
+    else:
+        towers_of_hanoi(n - 1, start, other())
+        move(n, start, end)
+        towers_of_hanoi(n - 1, other(), end)
+
+
 
 
 
