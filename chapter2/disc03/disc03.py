@@ -38,3 +38,32 @@ def get_catchphrase(unit):
 	return unit[0]
 def get_damage(unit):
 	return unit[1]
+#3.2
+def battle(first, second):
+	print(get_catchphrase(first))
+	print(get_catchphrase(second))
+	if get_damage(first) > get_damage(second):
+		return first
+	else:
+		return second
+#3.3
+def make_resource_bundle(minerals, gas):
+	def bundle(index):
+		if index == 0:
+			return minerals
+		elif index == 1:
+			return gas
+	return bundle
+
+def get_minerals(bundle):
+	return bundle(0)
+
+def get_gas(bundle):
+	return bundle(1)
+#3.4
+def make_building(unit, bundle):
+	return [unit, bundle]
+def get_unit(building):
+	return building[0]
+def get_bundle(building):
+	return building[1]
